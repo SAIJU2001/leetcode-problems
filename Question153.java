@@ -39,8 +39,44 @@ class Solution
 {
     public int findMin(int[] nums) 
     {    
-        Arrays.sort(nums);
-        return nums[0];
+        //approach 1
+
+    /*    Arrays.sort(nums);
+        return nums[0];     */
+
+        //Approach 2
+
+    /*   int min=nums[0];
+        for( int i=0 ; i<nums.length ; i++ )
+        {
+            if( min>nums[i] )
+                min=nums[i];
+        }
+        return min;             */
+
+        //approach 3
+
+        int ans=0,low=0,high=nums.length-1;
+        while( low<=high )
+        {
+            int mid=(low+high)/2;
+                
+            if( nums[mid]>nums[high] )
+                low=mid+1;
+
+            if( nums[mid]<nums[high] )
+            {
+                ans=nums[mid];
+                high=mid;
+            }
+
+            if( low==high )
+            {
+                ans=nums[low];
+                break;
+            }
+        }
+        return ans;
     }
 }
 
