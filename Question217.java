@@ -21,21 +21,40 @@ Constraints:
 import java.util.Scanner;
 import java.util.HashSet;
 
-//this is the solution
-class Solution 
-{
-    public boolean containsDuplicate(int[] nums) 
-    {
-        HashSet<Integer>set=new HashSet<>();
+class Solution{
+public boolean containsDuplicate(int[] nums) {
+/* 
+    //approach 1
+
+       HashSet<Integer>set=new HashSet<>();
         for( int i=0 ; i<nums.length ; i++ )
             set.add(nums[i]);
         
         if(set.size()==nums.length)
             return false;
         else
-            return true;
+            return true;        */
+
+    //approach 2
+
+        /*Arrays.sort( nums);
+        for( int i=0 ; i<nums.length-1 ; i++ )
+            if( nums[i]==nums[i+1] )
+                return true;
+        return false;*/
+
+        //approach 3
+
+        HashSet<Integer>set=new HashSet<>();
+        for( int i=0 ; i<nums.length ; i++ )
+            if( !set.add(nums[i]) )
+                return true;
+
+        return false;
     }
 }
+
+
 
 //main class for this program
 public class Question217
