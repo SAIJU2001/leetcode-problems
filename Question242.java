@@ -26,13 +26,38 @@ class Solution
 {
     public boolean isAnagram(String s, String t) 
     {   
-        char ch1[]=s.toCharArray();
-        char ch2[]=t.toCharArray();
-        
-        Arrays.sort(ch1);
-        Arrays.sort(ch2);
-        
-        return Arrays.equals(ch1,ch2);
+        // approach 1
+            /*     char ch1[]=s.toCharArray();
+                char ch2[]=t.toCharArray();
+                
+                Arrays.sort(ch1);
+                Arrays.sort(ch2);
+                
+                return Arrays.equals(ch1,ch2);
+                */
+        //approach 2
+        HashMap<Character,Integer>map=new HashMap<>();
+        if( s.length()!=t.length() )
+            return false;
+
+        for( int i=0 ; i<s.length() ; i++ )
+        {
+            char ch=s.charAt(i);
+            map.put( ch, map.getOrDefault( ch, 0 )+1 );
+        }
+
+        for( int i=0 ; i<t.length() ; i++ )
+        {
+            char ch=t.charAt(i);
+            if( !map.containsKey(ch) )
+                return false;
+
+            if( map.get(ch)==1 )
+                map.remove(ch);
+            else
+                map.put( ch, map.get(ch)-1 );
+        }
+        return true;
     }
 }
 
